@@ -72,6 +72,12 @@
     .file-upload-label:hover {
       background: linear-gradient(90deg, #e50914, #b81d24);
     }
+    .file-name {
+      font-style: italic;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #aaa;
+    }
     button {
       background-color: #e50914;
       color: white;
@@ -146,6 +152,7 @@
       <div class="file-upload">
         <label class="file-upload-label" for="resume">Choose File</label>
         <input type="file" id="resume" file-model="resumeFile" required />
+        <div class="file-name" ng-if="resumeFile">Uploaded: {{ resumeFile.name }}</div>
       </div>
 
       <label for="jobDescription">Job Description:</label>
@@ -188,6 +195,7 @@
       $scope.jobDescription = '';
       $scope.responseText = '';
       $scope.loading = false;
+      $scope.resumeFile = null;
 
       $scope.submitForm = function() {
         $scope.loading = true;
