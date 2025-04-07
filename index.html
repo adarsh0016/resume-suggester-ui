@@ -9,15 +9,17 @@
     body {
       margin: 0;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background-color: #141414;
+      background: linear-gradient(to bottom, #141414, #0f0f0f);
       color: #fff;
     }
     header {
-      background-color: #e50914;
+      background: linear-gradient(to right, #e50914, #b81d24, #e50914);
       padding: 1rem 2rem;
       font-size: 1.5rem;
       font-weight: bold;
       text-align: center;
+      color: white;
+      text-shadow: 1px 1px 2px #000;
     }
     .container {
       max-width: 800px;
@@ -32,7 +34,7 @@
       margin-top: 1rem;
       display: block;
     }
-    textarea, input[type=file] {
+    textarea {
       display: block;
       margin: 0.5rem 0 1rem;
       width: 100%;
@@ -40,6 +42,35 @@
       border-radius: 4px;
       border: none;
       box-sizing: border-box;
+    }
+    .file-upload {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    .file-upload input[type=file] {
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
+    }
+    .file-upload-label {
+      display: block;
+      padding: 0.75rem;
+      background: linear-gradient(90deg, #444, #e50914);
+      border-radius: 4px;
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    .file-upload-label:hover {
+      background: linear-gradient(90deg, #e50914, #b81d24);
     }
     button {
       background-color: #e50914;
@@ -100,7 +131,7 @@
         font-size: 1.2rem;
         padding: 1rem;
       }
-      button {
+      button, .file-upload-label {
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
       }
@@ -112,7 +143,10 @@
   <div class="container">
     <form ng-submit="submitForm()" enctype="multipart/form-data">
       <label for="resume">Upload Resume:</label>
-      <input type="file" id="resume" file-model="resumeFile" required />
+      <div class="file-upload">
+        <label class="file-upload-label" for="resume">Choose File</label>
+        <input type="file" id="resume" file-model="resumeFile" required />
+      </div>
 
       <label for="jobDescription">Job Description:</label>
       <textarea id="jobDescription" ng-model="jobDescription" rows="10" required></textarea>
@@ -165,10 +199,10 @@
 
         $http({
           method: 'POST',
-          url: 'https://resume-suggester.up.railway.app/api/suggest',
+          url: 'http://localhost:8080/api/suggest',
           headers: {
             'Content-Type': undefined,
-            'Authorization': 'Basic dXNlcjp1c2Vy'
+            'Authorization': 'Basic dXNlcjo4YjU1NDk5ZC0yYmZiLTRkMDAtOGRkMS1lZjVkM2M5MmZiZTc='
           },
           data: formData,
           transformRequest: angular.identity,
