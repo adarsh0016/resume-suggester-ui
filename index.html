@@ -203,7 +203,7 @@
 
         var formData = new FormData();
         formData.append('file', $scope.resumeFile);
-        formData.append('jobDescription', $scope.jobDescription);
+        formData.append('data', $scope.jobDescription);
 
         $http({
           method: 'POST',
