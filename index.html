@@ -2,6 +2,7 @@
 <html lang="en" ng-app="resumeApp">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resume Suggester</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <style>
@@ -16,6 +17,7 @@
       padding: 1rem 2rem;
       font-size: 1.5rem;
       font-weight: bold;
+      text-align: center;
     }
     .container {
       max-width: 800px;
@@ -37,6 +39,7 @@
       padding: 0.5rem;
       border-radius: 4px;
       border: none;
+      box-sizing: border-box;
     }
     button {
       background-color: #e50914;
@@ -47,6 +50,7 @@
       border-radius: 4px;
       cursor: pointer;
       margin-top: 1rem;
+      width: 100%;
     }
     button:hover {
       background-color: #f40612;
@@ -85,6 +89,21 @@
     .loading-text {
       font-style: italic;
       color: #e50914;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 1rem;
+        padding: 1rem;
+      }
+      header {
+        font-size: 1.2rem;
+        padding: 1rem;
+      }
+      button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+      }
     }
   </style>
 </head>
@@ -142,7 +161,7 @@
 
         var formData = new FormData();
         formData.append('file', $scope.resumeFile);
-        formData.append('data', $scope.jobDescription);
+        formData.append('jobDescription', $scope.jobDescription);
 
         $http({
           method: 'POST',
