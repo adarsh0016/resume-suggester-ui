@@ -2,7 +2,7 @@ angular.module('resumeApp')
   .controller('LoginCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.user = {};
     $scope.login = function () {
-      $http.post('http://localhost:8080/api/login', $scope.user).then(
+      $http.post('https://resume-suggester.up.railway.app/api/login', $scope.user).then(
         function (res) {
           console.log('Login response:', res.data.message);
           if (res.data && res.data.message) {

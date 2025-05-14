@@ -16,7 +16,7 @@ angular.module('resumeApp')
       formData.append('data', $scope.jobDescription);
       $http({
         method: 'POST',
-        url: 'http://localhost:8080/api/suggest',
+        url: 'https://resume-suggester.up.railway.app/api/suggest',
         headers: {
           'Content-Type': undefined,
           'Authorization': 'Bearer ' + token
