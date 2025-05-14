@@ -2,22 +2,22 @@
 <html lang="en" ng-app="resumeApp">
 <head>
   <meta charset="UTF-8" />
-  <title>Login • Resume Suggester</title>
+  <title>Sign Up • Resume Suggester</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <link rel="stylesheet" href="assets/style.css" />
   <script src="app/app.module.js"></script>
-  <script src="app/controllers/login.controller.js"></script>
+  <script src="app/controllers/signup.controller.js"></script>
 </head>
-<body ng-controller="LoginCtrl">
-  <header>Resume Suggester — Login</header>
+<body ng-controller="SignupCtrl">
+  <header>Resume Suggester — Sign Up</header>
   <div class="container">
-    <form ng-submit="login()">
+    <form ng-submit="signup()">
       <label>Username</label>
       <input type="text" ng-model="user.username" required />
       <label>Password</label>
       <input type="password" ng-model="user.password" required />
-      <button type="submit">Log In</button>
-      <p>New here? <a href="signup.html">Create an account</a></p>
+      <button type="submit">Create Account</button>
+      <p>Already registered? <a href="index.html">Log in</a></p>
     </form>
   </div>
 </body>
