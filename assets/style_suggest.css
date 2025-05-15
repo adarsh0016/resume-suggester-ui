@@ -1,4 +1,4 @@
-/* Base styles */
+/* Body layout */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #f4f5f7;
@@ -18,26 +18,39 @@ header {
   font-weight: bold;
 }
 
-/* Container */
 .container {
   flex: 1;
   display: flex;
-  align-items: center;
   justify-content: center;
   padding: 2rem;
 }
 
-/* Form wrapper */
+/* Wrapper for form + output */
+.form-wrapper {
+  width: 100%;
+  max-width: 800px; /* Increased for laptop view */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+  padding: 0 1rem; /* Small padding for edge cases */
+}
+
+@media (max-width: 768px) {
+  .form-wrapper {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}
+
+/* Form styling */
 form {
   background: white;
   padding: 2.5rem 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
 }
 
 /* Labels and inputs */
@@ -48,8 +61,9 @@ label {
   color: #333;
 }
 
+textarea,
 input[type="text"],
-input[type="password"] {
+input[type="file"] {
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -58,7 +72,7 @@ input[type="password"] {
   box-sizing: border-box;
 }
 
-input:focus {
+input:focus, textarea:focus {
   border-color: #d72638;
   outline: none;
 }
@@ -81,48 +95,46 @@ button:hover {
   background-color: #c11f30;
 }
 
-/* Signup link */
-p {
+/* Spinner */
+.loading {
   margin-top: 1rem;
   text-align: center;
-  font-size: 0.9rem;
 }
 
-a {
-  color: #d72638;
-  text-decoration: none;
-  font-weight: 500;
+.spinner {
+  margin: 0 auto 1rem;
+  width: 40px;
+  height: 40px;
+  border: 5px solid #eee;
+  border-top: 5px solid #d72638;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-a:hover {
-  text-decoration: underline;
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* --- Mobile-friendly styles --- */
-@media (max-width: 480px) {
-  .container {
-    padding: 1rem;
-  }
+.output {
+  margin-top: 1rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  word-break: break-word;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-  form {
-    padding: 2rem 1rem;
-    max-width: 100%;
-    box-shadow: none; /* Optional: flatter look on mobile */
-    border-radius: 0;  /* Optional: square edges on mobile */
-  }
 
-  header {
-    font-size: 1.2rem;
-    padding: 0.75rem 1rem;
-  }
-
-  button {
-    font-size: 1rem;
-    padding: 0.75rem;
-  }
-
-  input[type="text"],
-  input[type="password"] {
-    font-size: 1rem;
-  }
+.output pre {
+  margin: 0;
+  font-family: monospace;
+  white-space: pre-wrap;       /* Ensures wrap inside <pre> */
+  word-break: break-word;
 }

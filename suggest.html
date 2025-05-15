@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <title>Resume Suggester</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <link rel="stylesheet" href="assets/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-sanitize.js"></script>
+  <link rel="stylesheet" href="assets/style_suggest.css" />
   <script src="app/app.module.js"></script>
   <script src="app/directives/fileModel.directive.js"></script>
   <script src="app/controllers/suggest.controller.js"></script>
@@ -12,20 +13,30 @@
 <body ng-controller="SuggestCtrl">
   <header>Resume Suggester</header>
   <div class="container">
-    <form ng-submit="submitForm()" enctype="multipart/form-data">
-      <label>Upload Resume</label>
-      <div class="file-upload">
-        <label class="file-upload-label" for="resume">Choose File</label>
-        <input type="file" id="resume" file-model="resumeFile" required />
-        <div class="file-name" ng-if="resumeFile">Uploaded: {{ resumeFile.name }}</div>
+    <div class="form-wrapper">
+      <form ng-submit="submitForm()" enctype="multipart/form-data" novalidate>
+        <label>Upload Resume</label>
+        <div class="file-upload">
+          <label class="file-upload-label" for="resume">Choose File</label>
+          <input type="file" id="resume" file-model="resumeFile" required />
+          <div class="file-name" ng-if="resumeFile">Uploaded: {{ resumeFile.name }}</div>
+        </div>
+        <label>Job Description</label>
+        <textarea ng-model="jobDescription" rows="10" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+
+      <!-- Loading Spinner -->
+      <div class="loading" ng-if="loading">
+        <div class="spinner"></div>
+        <p>Generating suggestions...</p>
       </div>
-      <label>Job Description</label>
-      <textarea ng-model="jobDescription" rows="10" required></textarea>
-      <button type="submit">Submit</button>
-    </form>
-    <div class="output" ng-if="responseText">
-      <h3>Response</h3>
-      <pre ng-bind-html="responseText"></pre>
+
+      <!-- Output Response -->
+      <div class="output" ng-if="responseText && !loading">
+        <h3>Response</h3>
+        <pre ng-bind-html="responseText"></pre>
+      </div>
     </div>
   </div>
 </body>
