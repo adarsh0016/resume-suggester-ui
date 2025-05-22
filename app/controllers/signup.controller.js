@@ -2,7 +2,7 @@ angular.module('resumeApp')
   .controller('SignupCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.user = {};
     $scope.signup = function () {
-      $http.post('https://resume-suggester.up.railway.app/api/register', $scope.user).then(
+      $http.post('https://resume-suggester.onrender.com/api/register', $scope.user).then(
         function () {
           alert('Signup successful! You can now log in.');
           window.location.href = 'index.html';
